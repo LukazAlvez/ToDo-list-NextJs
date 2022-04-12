@@ -1,0 +1,70 @@
+.container{
+    width: 800px;
+    margin: 0 auto;
+}
+
+@media screen and (max-width: 800px){
+    .container{
+        width: 90%;
+    }
+}
+
+/* navBar */
+.navBar{
+    width: 800px;
+    margin: 0 auto;  
+    display: flex;
+    flex-direction: row;  
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navBar ol{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+}
+.navBar ol li{
+    margin-left: 15px;
+}
+.navBar ol li a:hover{
+    color: var(--cor-bg-menu);
+    border-bottom: 2px solid var(--cor-font);
+}
+@media screen and (max-width: 800px){
+    .navBar{
+        width: 90%;
+    }
+}
+
+/* box input text area e button */
+.inputBox{
+    padding: 10px;
+}
+.inputBox form{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.inputBox textarea{
+    font-size: 18px;
+    resize: none;
+    width: 100%;
+    background-color: var(--cor-bg);
+    border: none;
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    color: var(--cor-font);
+}
+.inputBox .btn{
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: var(--cor-font);
+    cursor: pointer;
+}
+.inputBox .btn:hover{
+    border-bottom: 2px solid var(--cor-font);
+}
