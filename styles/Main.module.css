@@ -39,12 +39,7 @@
 
 /* box input text area e button */
 .inputBox{
-    padding: 10px;
-}
-.inputBox form{
-    width: 100%;
     display: flex;
-    justify-content: flex-end;
 }
 
 .inputBox textarea{
@@ -58,13 +53,13 @@
     padding: 5px;
     color: var(--cor-font);
 }
-.inputBox .btn{
+.inputBox button{
     background: none;
     border: none;
     font-weight: bold;
     color: var(--cor-font);
     cursor: pointer;
 }
-.inputBox .btn:hover{
+.inputBox button:hover{
     border-bottom: 2px solid var(--cor-font);
 }

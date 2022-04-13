@@ -2,32 +2,51 @@ import { useState } from "react"
 import style from "../styles/Main.module.css"
 import Box from "./components/Box"
 import NavBar from "./components/NavBar"
+import { db } from "./firebase"
+import { uid } from "uid"
+import { onValue, ref, set } from "firebase/database"
+import { useEffect } from "react"
 
 export default function Home(){
 
   const [input, setInput] = useState("")
   const [posts, setPost] = useState([])
 
+  useEffect(()=>{
+    getPost()
+  },[])
+
+  function getPost(){
+    onValue(ref(db),(snapshot)=>{
+      setPost([])
+      const data = snapshot.val()
+      if(data !== null){
+        Object.values(data).map((post)=>{
+        setPost((oldArray)=> [post, ...oldArray])
+      })
+      }
+      
+    })
+  }
+ 
   const handleChange = (e) =>{
     setInput(e.target.value)
-
   }
-  const handleSubmit = (e) =>{
-    e.preventDefault()
+
+  const writeDataBase = () =>{
+    const id = uid()
+    const dt = new Date();
+   
+  
     if(input !== ""){
-      setPost([
-      input,
-      ...posts
-      ])
+      set(ref(db, `/${dt}`),{
+        input,
+        id
+      })
+      setInput("")
     }else{
-      alert("Digite algo!")
+      alert("Digite algo")
     }
-    
-  }
-
-  const handleDelete = (post) =>{
-    const updatePost = posts.filter(postItem => posts.indexOf(postItem) != posts.indexOf(post))
-    setPost(updatePost)
   }
   return (
     <div>
@@ -38,26 +57,19 @@ export default function Home(){
         <div>
           <Box>
             <div className={style.inputBox}>
-              <form onSubmit={handleSubmit} >
+      
                 <textarea onChange={handleChange} name="" id="" cols="30" rows="3"></textarea>
-                <input className={style.btn} type="submit"value="Publicar"/>
-              </form>
+                <button onClick={writeDataBase}>Publicar</button>
+ 
             </div>
           </Box>
-            <div>
-              {
-                posts.length >= 1 ? posts.map((post, idx) => {
-                  return (
-                    <Box>
-                      <div style={{padding: "10px"}} key={idx}>{post}<button onClick={(e) =>{
-                        e.preventDefault()
-                        handleDelete(post)
-                      }}>Deletar</button></div>
-                    </Box>
-                  ) 
-                }) : ""
-              }
-            </div>
+          <div>
+              {posts.map((post, id) =>
+                <Box key={id}>
+                  <div><h2>{post.input}</h2></div>
+                </Box>
+              )}
+          </div>
         </div>
       </div>
     </div>
