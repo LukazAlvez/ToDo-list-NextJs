@@ -63,3 +63,22 @@
 .inputBox button:hover{
     border-bottom: 2px solid var(--cor-font);
 }
+
+/* posts */
+
+.post{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.post button{
+    background: none;
+    border: none;
+    color: var(--cor-font);
+    font-size: 30px;
+    cursor: pointer;
+}
+.post button:hover{
+    color: red;
+}
