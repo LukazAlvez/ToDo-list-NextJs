@@ -1,6 +1,6 @@
-:root{
-  --cor-bg: #333;
-  --cor-bg-menu: #444;
+:root {
+  --cor-bg: rgb(36, 36, 36);
+  --cor-bg-menu: rgb(55, 55, 55);
   --cor-font: #eee;
 }
 
@@ -21,4 +21,9 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+span {
+  font-size: 10px;
+  color: rgb(151, 151, 151);
 }
